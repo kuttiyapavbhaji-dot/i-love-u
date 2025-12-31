@@ -19,6 +19,8 @@ body{
   padding:20px;
   overflow-x:hidden;
 }
+
+/* Floating hearts */
 .hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1}
 .heart{position:absolute;font-size:16px;opacity:.7;animation:float 6s linear infinite}
 @keyframes float{
@@ -27,21 +29,30 @@ body{
   100%{transform:translateY(-10vh);opacity:0}
 }
 
+/* Layout */
 header{text-align:center;margin:30px 0}
 header h1{font-size:2.6rem;text-shadow:0 0 12px pink;animation:pulse 2s infinite}
 @keyframes pulse{50%{transform:scale(1.05)}}
 header p{opacity:.85}
 
 .card{
-  max-width:780px;width:100%;
+  max-width:820px;width:100%;
   background:rgba(12,11,24,.88);
   border-radius:22px;
-  padding:26px;
+  padding:28px;
   box-shadow:0 18px 40px rgba(0,0,0,.7);
   margin-bottom:20px;
 }
 
-hr{border:none;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.2),transparent);margin:20px 0}
+.section{margin:25px 0;text-align:center}
+.title{font-size:1.35rem;color:#ffb3d1;margin-bottom:10px}
+
+hr{
+  border:none;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,.2),transparent);
+  margin:22px 0;
+}
 
 button,input{
   padding:9px 14px;
@@ -62,62 +73,87 @@ input{
 }
 .hidden{display:none}
 
-/* 🎂 CAKE */
-.cake-area{perspective:900px;text-align:center;margin:25px 0}
-.cake{
+/* ================= 3D CAKE ================= */
+.cake-stage{
+  perspective:1200px;
+  display:flex;
+  justify-content:center;
+  margin:40px 0;
+}
+.cake-3d{
   position:relative;
-  width:160px;
-  height:160px;
-  margin:auto;
+  width:240px;
+  height:280px;
   transform-style:preserve-3d;
-  animation:spin 14s linear infinite;
+  animation:cakeIdle 12s ease-in-out infinite;
 }
-@keyframes spin{to{transform:rotateY(360deg)}}
-.layer{
+@keyframes cakeIdle{
+  0%,100%{transform:rotateX(18deg) rotateY(-20deg)}
+  50%{transform:rotateX(20deg) rotateY(20deg)}
+}
+.tier{
   position:absolute;
-  width:160px;
-  height:40px;
-  border-radius:50%;
-  background:linear-gradient(#f4a261,#e76f51);
-  box-shadow:0 6px 12px rgba(0,0,0,.4);
+  left:50%;
+  transform-style:preserve-3d;
+  transform:translateX(-50%);
 }
-.layer:nth-child(1){top:100px}
-.layer:nth-child(2){top:60px;transform:scale(.9)}
-.layer:nth-child(3){top:20px;transform:scale(.8)}
+.tier-top{
+  position:absolute;
+  border-radius:50%;
+  background:radial-gradient(circle at top left,#fff2e6,#f4a261);
+  box-shadow:inset -8px -6px 12px rgba(0,0,0,.25),0 8px 14px rgba(0,0,0,.4);
+}
+.tier-side{
+  position:absolute;
+  background:linear-gradient(to right,#d96b4c,#f4a261,#e76f51);
+  border-radius:0 0 50% 50%;
+  transform-origin:top;
+  box-shadow:inset -10px 0 14px rgba(0,0,0,.25);
+}
 
+/* Bottom */
+.bottom{bottom:0}
+.bottom .tier-top{width:200px;height:50px;transform:translateZ(40px)}
+.bottom .tier-side{width:200px;height:80px;top:40px}
+
+/* Middle */
+.middle{bottom:90px}
+.middle .tier-top{width:160px;height:40px;transform:translateZ(35px)}
+.middle .tier-side{width:160px;height:70px;top:32px}
+
+/* Top */
+.topmost{bottom:170px}
+.topmost .tier-top{width:120px;height:30px;transform:translateZ(30px)}
+.topmost .tier-side{width:120px;height:60px;top:26px}
+
+/* Candle */
 .candle{
   position:absolute;
-  width:10px;
-  height:40px;
-  background:#fff;
-  top:-30px;
-  left:75px;
-  border-radius:5px;
+  width:12px;height:50px;
+  background:linear-gradient(to right,#fff,#ddd);
+  left:50%;bottom:230px;
+  transform:translateX(-50%) translateZ(50px);
+  border-radius:6px;
 }
 .flame{
-  font-size:32px;
   position:absolute;
-  top:-65px;
-  left:67px;
+  font-size:32px;
+  left:50%;bottom:285px;
+  transform:translateX(-50%) translateZ(65px);
   animation:flicker 1s infinite alternate;
 }
-@keyframes flicker{to{transform:scale(.85)}}
+@keyframes flicker{to{transform:translateX(-50%) scale(.85)}}
 
-/* 🎉 CONFETTI */
+/* Confetti */
 .confetti{
   position:fixed;
   top:-10px;
-  width:8px;
-  height:14px;
+  width:8px;height:14px;
   animation:fall 3s linear forwards;
 }
 @keyframes fall{
   to{transform:translateY(110vh) rotate(720deg);opacity:0}
 }
-
-.section-title{font-size:1.3rem;color:#ffb3d1;margin-bottom:10px}
-.center{text-align:center}
-.small{opacity:.85;font-size:.9rem}
 </style>
 </head>
 
@@ -126,74 +162,90 @@ input{
 <div class="hearts"></div>
 
 <header>
-<h1>Happy Birthday Khushi ❤️</h1>
-<p>My favorite person, always</p>
+  <h1>Happy Birthday Khushi ❤️</h1>
+  <p>This little world is just for you</p>
 </header>
 
 <div class="card">
 
-<div class="center">
-  <div class="section-title">⏳ Countdown</div>
+<!-- COUNTDOWN -->
+<div class="section">
+  <div class="title">⏳ Countdown</div>
   <p id="countdown"></p>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">🎂 Make a wish</div>
+<!-- CAKE -->
+<div class="section">
+  <div class="title">🎂 Make a wish</div>
 
-  <div class="cake-area">
-    <div class="cake">
-      <div class="layer"></div>
-      <div class="layer"></div>
-      <div class="layer"></div>
+  <div class="cake-stage">
+    <div class="cake-3d">
+      <div class="tier bottom">
+        <div class="tier-top"></div>
+        <div class="tier-side"></div>
+      </div>
+      <div class="tier middle">
+        <div class="tier-top"></div>
+        <div class="tier-side"></div>
+      </div>
+      <div class="tier topmost">
+        <div class="tier-top"></div>
+        <div class="tier-side"></div>
+      </div>
       <div class="candle"></div>
       <div class="flame" id="flame">🔥</div>
     </div>
   </div>
 
   <input id="blowInput" placeholder="type 'blow'">
-  <button onclick="blowCandle()">Blow Candle</button>
+  <button onclick="blowCandle()">Blow candle</button>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">🎁 Surprise Gift</div>
-  <button onclick="openGift()">Open</button>
+<!-- GIFT -->
+<div class="section">
+  <div class="title">🎁 Surprise</div>
+  <button onclick="openGift()">Open gift</button>
   <p id="giftMsg" class="hidden">You are my forever gift 💝</p>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">💬 Compliment Generator</div>
+<!-- COMPLIMENT -->
+<div class="section">
+  <div class="title">💬 Compliment Generator</div>
   <button onclick="giveCompliment()">Generate</button>
   <p id="compliment"></p>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">🔐 Password Guess</div>
-  <input id="pwd" placeholder="hint: her name 😉">
+<!-- PASSWORD -->
+<div class="section">
+  <div class="title">🔐 Password Challenge</div>
+  <input id="pwd" placeholder="hint: your name">
   <button onclick="checkPassword()">Try</button>
   <p id="pwdResult"></p>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">🔢 Number Guess</div>
-  <input id="num" type="number" placeholder="1–5">
+<!-- NUMBER -->
+<div class="section">
+  <div class="title">🔢 Number Guess</div>
+  <input id="num" type="number" placeholder="1–10">
   <button onclick="guessNumber()">Guess</button>
   <p id="numResult"></p>
 </div>
 
 <hr>
 
-<div class="center">
-  <div class="section-title">✊✋✌ Rock Paper Scissors</div>
+<!-- RPS -->
+<div class="section">
+  <div class="title">✊✋✌ Rock Paper Scissors</div>
   <button onclick="rps('rock')">✊</button>
   <button onclick="rps('paper')">✋</button>
   <button onclick="rps('scissors')">✌</button>
@@ -203,7 +255,7 @@ input{
 </div>
 
 <script>
-// ❤️ HEARTS
+// Hearts
 const hearts=document.querySelector(".hearts");
 setInterval(()=>{
   const h=document.createElement("div");
@@ -214,19 +266,9 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),6000);
 },300);
 
-// ⏳ COUNTDOWN
-const target=new Date("2026-02-10");
-setInterval(()=>{
-  const d=target-new Date();
-  document.getElementById("countdown").innerText=
-    Math.floor(d/86400000)+" days "+
-    Math.floor(d/3600000)%24+" hrs "+
-    Math.floor(d/60000)%60+" mins";
-},1000);
-
-// 🎉 CONFETTI
+// Confetti + vibration
 function confetti(){
-  for(let i=0;i<40;i++){
+  for(let i=0;i<50;i++){
     const c=document.createElement("div");
     c.className="confetti";
     c.style.left=Math.random()*100+"vw";
@@ -235,13 +277,28 @@ function confetti(){
     setTimeout(()=>c.remove(),3000);
   }
 }
-
-// 📳 VIBRATION
 function vibrate(){
-  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  if(navigator.vibrate) navigator.vibrate([120,60,120]);
 }
 
-// 🎂 BLOW
+// Countdown (fixed)
+const birthday=new Date("2026-02-10T00:00:00");
+const cd=document.getElementById("countdown");
+setInterval(()=>{
+  const diff=birthday-new Date();
+  if(diff<=0){
+    cd.innerText="🎉 It’s your birthday!";
+    confetti(); vibrate();
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+  cd.innerText=`${d}d ${h}h ${m}m ${s}s`;
+},1000);
+
+// Cake
 function blowCandle(){
   if(blowInput.value.toLowerCase()=="blow"){
     flame.innerText="✨";
@@ -249,42 +306,78 @@ function blowCandle(){
   }
 }
 
-// 🎁 GIFT
+// Gift
 function openGift(){
   giftMsg.classList.remove("hidden");
   confetti(); vibrate();
 }
 
-// 💬 COMPLIMENT
-const compliments=[
+// Compliments
+let compliments=[
   "You make my world softer 💗",
   "You feel like home 🏡",
-  "You are my calm and chaos 🌸",
-  "I choose you, always ❤️"
+  "I admire your heart 🌸",
+  "I choose you, always ❤️",
+  "You’re my favorite person 🫶"
 ];
 function giveCompliment(){
-  compliment.innerText=
-    compliments[Math.floor(Math.random()*compliments.length)];
+  if(!compliments.length){
+    compliment.innerText="That’s all… but my love isn’t 💞";
+    return;
+  }
+  compliment.innerText=compliments.splice(
+    Math.floor(Math.random()*compliments.length),1
+  )[0];
 }
 
-// 🔐 PASSWORD
+// Password
+let attempts=3;
 function checkPassword(){
-  pwdResult.innerText=
-    pwd.value.toLowerCase()=="khushi"?"Correct 💖":"Try again 😏";
+  if(attempts<=0){
+    pwdResult.innerText="Locked 😈";
+    return;
+  }
+  if(pwd.value.toLowerCase()=="khushi"){
+    pwdResult.innerText="Correct 💖";
+    confetti(); vibrate();
+  }else{
+    attempts--;
+    pwdResult.innerText=
+      attempts==2?"Hint: it’s literally your name 😏":
+      attempts==1?"Last chance 👀":"Locked 😈";
+  }
 }
 
-// 🔢 NUMBER
-const secret=Math.floor(Math.random()*5)+1;
+// Number
+const secret=Math.floor(Math.random()*10)+1;
 function guessNumber(){
-  numResult.innerText=
-    Number(num.value)==secret?"You got it! 🎉":"Nope 😜";
+  const g=Number(num.value);
+  if(g==secret){
+    numResult.innerText="You got it 🎉";
+    confetti(); vibrate();
+  }else if(g>secret){
+    numResult.innerText="Too high ⬆️";
+  }else{
+    numResult.innerText="Too low ⬇️";
+  }
 }
 
-// ✊✋✌
-function rps(choice){
-  const arr=["rock","paper","scissors"];
-  const ai=arr[Math.floor(Math.random()*3)];
-  rpsResult.innerText=`You: ${choice} | Me: ${ai}`;
+// RPS
+let ps=0,as=0;
+function rps(c){
+  const o=["rock","paper","scissors"];
+  const ai=o[Math.floor(Math.random()*3)];
+  if(c==ai) rpsResult.innerText="Draw 😐";
+  else if(
+    (c=="rock"&&ai=="scissors")||
+    (c=="paper"&&ai=="rock")||
+    (c=="scissors"&&ai=="paper")
+  ){ps++; rpsResult.innerText=`You win (${ps}-${as}) 💖`;}
+  else{as++; rpsResult.innerText=`I win (${ps}-${as}) 😏`;}
+  if(ps==3||as==3){
+    confetti(); vibrate();
+    ps=as=0;
+  }
 }
 </script>
 
