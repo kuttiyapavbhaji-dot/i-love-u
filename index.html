@@ -1,148 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>For Khushi's Birthday ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { min-height: 100vh; font-family: "Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background: radial-gradient(circle at top, #ff9a9e 0%, #fecfef 30%, #1f1b2e 60%, #0b0814 100%); color: #fff; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden; }
-    .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: -1; }
-    .heart { position: absolute; color: rgba(255,255,255,0.2); font-size: 16px; animation: floatUp linear infinite, rotateHeart 4s linear infinite; opacity: 0.8; }
-    @keyframes floatUp { 0% { transform: translateY(100vh) translateX(0) scale(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-10vh) translateX(30px) scale(0.8); opacity: 0; } }
-    @keyframes rotateHeart { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    header { text-align: center; margin-top: 30px; margin-bottom: 30px; }
-    header h1 { font-size: 2.6rem; letter-spacing: 2px; text-shadow: 0 0 12px rgba(255,150,180,0.7); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    .card { width: 100%; max-width: 750px; background: rgba(12,11,24,0.85); border-radius: 22px; padding: 26px 22px; box-shadow: 0 18px 40px rgba(0,0,0,0.7), 0 0 20px rgba(255,150,180,0.3); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); margin-bottom: 20px; }
-    .main-message h2 { font-size: 1.6rem; margin-bottom: 8px; }
-    .main-message p { font-size: 0.98rem; line-height: 1.6; opacity: 0.9; }
-    .highlight { color: #ff9ac4; font-weight: 600; }
-    .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); margin: 18px 0; }
-    .game-card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
-    .game-card h4 { font-size: 1.1rem; margin-bottom: 10px; color: #ffb3d1; }
-    .game-btn { background: rgba(255,150,180,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 8px 12px; font-size: 0.9rem; color: #fff; cursor: pointer; margin: 5px; }
-    .game-btn:hover { background: rgba(255,150,180,0.5); transform: scale(1.05); }
-    .input-field { padding: 8px; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem; margin: 5px; }
-    .feedback { margin-top: 10px; color: #ff9ac4; }
-    .gift-box { font-size: 3rem; cursor: pointer; }
-  </style>
+<meta charset="UTF-8">
+<title>For Khushi ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100vh;
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle at top,#ff9a9e,#fecfef,#1f1b2e,#0b0814);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px;
+  overflow-x:hidden;
+}
+.hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+.heart{position:absolute;font-size:16px;opacity:.7;animation:float 6s linear infinite}
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+header{text-align:center;margin:30px 0}
+header h1{font-size:2.6rem;text-shadow:0 0 12px pink;animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+header p{opacity:.85}
+
+.card{
+  max-width:780px;width:100%;
+  background:rgba(12,11,24,.88);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 18px 40px rgba(0,0,0,.7);
+  margin-bottom:20px;
+}
+
+hr{border:none;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.2),transparent);margin:20px 0}
+
+button,input{
+  padding:9px 14px;
+  border-radius:10px;
+  border:none;
+  margin:6px;
+  font-family:Poppins,sans-serif;
+}
+button{
+  background:rgba(255,150,180,.35);
+  color:#fff;
+  cursor:pointer;
+}
+button:hover{background:rgba(255,150,180,.6)}
+input{
+  background:rgba(255,255,255,.1);
+  color:#fff;
+}
+.hidden{display:none}
+
+/* 🎂 CAKE */
+.cake-area{perspective:900px;text-align:center;margin:25px 0}
+.cake{
+  position:relative;
+  width:160px;
+  height:160px;
+  margin:auto;
+  transform-style:preserve-3d;
+  animation:spin 14s linear infinite;
+}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.layer{
+  position:absolute;
+  width:160px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(#f4a261,#e76f51);
+  box-shadow:0 6px 12px rgba(0,0,0,.4);
+}
+.layer:nth-child(1){top:100px}
+.layer:nth-child(2){top:60px;transform:scale(.9)}
+.layer:nth-child(3){top:20px;transform:scale(.8)}
+
+.candle{
+  position:absolute;
+  width:10px;
+  height:40px;
+  background:#fff;
+  top:-30px;
+  left:75px;
+  border-radius:5px;
+}
+.flame{
+  font-size:32px;
+  position:absolute;
+  top:-65px;
+  left:67px;
+  animation:flicker 1s infinite alternate;
+}
+@keyframes flicker{to{transform:scale(.85)}}
+
+/* 🎉 CONFETTI */
+.confetti{
+  position:fixed;
+  top:-10px;
+  width:8px;
+  height:14px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+
+.section-title{font-size:1.3rem;color:#ffb3d1;margin-bottom:10px}
+.center{text-align:center}
+.small{opacity:.85;font-size:.9rem}
+</style>
 </head>
+
 <body>
-  <div class="hearts" id="hearts-container"></div>
-  <header>
-    <h1>🎆 For Khushi's Birthday 🎉</h1>
-    <p>A special day for a special person</p>
-  </header>
-  <main class="card">
-    <h2>Today is YOUR Day! 🎂</h2>
-    <p>Happy birthday to someone who makes every moment special! You deserve all the happiness in the world. Thank you for being the <span class="highlight">incredible person you are</span>.</p>
-    <div class="divider"></div>
-    <p style="text-align:center; font-size:0.9rem; opacity:0.9;">🎉 Make a wish and blow the candles! 🎂</p>
-  </main>
-  <main class="card">
-    <h2 style="text-align:center; color:#ff9ac4; margin-bottom:20px;">🎮 Play Some Birthday Games! 🎮</h2>
-    <div class="game-card">
-      <h4>🎁 Guess the Gift</h4>
-      <p>Click the gift box to reveal your surprise!</p>
-      <div style="text-align:center;"><div class="gift-box" id="giftBox">🎁</div><div class="feedback" id="giftFeedback"></div></div>
+
+<div class="hearts"></div>
+
+<header>
+<h1>Happy Birthday Khushi ❤️</h1>
+<p>My favorite person, always</p>
+</header>
+
+<div class="card">
+
+<div class="center">
+  <div class="section-title">⏳ Countdown</div>
+  <p id="countdown"></p>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">🎂 Make a wish</div>
+
+  <div class="cake-area">
+    <div class="cake">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="candle"></div>
+      <div class="flame" id="flame">🔥</div>
     </div>
-    <div class="game-card">
-      <h4>🎲 Lucky Number Game</h4>
-      <p>I'm thinking of a number between 1-50. Can you guess it?</p>
-      <input type="number" id="numberInput" class="input-field" placeholder="Enter number" min="1" max="50"><button class="game-btn" onclick="checkNumber()">Guess!</button><div class="feedback" id="numberFeedback"></div>
-    </div>
-    <div class="game-card">
-      <h4>🎯 Rock Paper Scissors</h4>
-      <p>Beat me in a game!</p>
-      <div style="text-align:center;"><button class="game-btn" onclick="playRPS('rock')">🪨 Rock</button><button class="game-btn" onclick="playRPS('paper')">📄 Paper</button><button class="game-btn" onclick="playRPS('scissors')">✂️ Scissors</button></div><div class="feedback" id="rpsFeedback"></div>
-    </div>
-    <div class="game-card">
-      <h4>🔐 Password Guesser</h4>
-      <p>Guess the password! Hint: khushi@2026</p>
-      <input type="text" id="passwordInput" class="input-field" placeholder="Enter password"><button class="game-btn" onclick="checkPassword()">Submit</button><div class="feedback" id="passwordFeedback"></div>
-    </div>
-    <div class="game-card">
-      <h4>💭 Quick Quiz</h4>
-      <p id="quizQuestion"></p>
-      <div id="quizOptions" style="text-align:center;"></div><div class="feedback" id="quizFeedback"></div>
-    </div>
-  </main>
-  <p style="text-align:center; margin:20px; opacity:0.8; color:#fff;">Wishing you infinite joy, <span style="color:#ffb3d1;">love, and the best year ahead!</span></p>
-  <script>
-    const secretNumber = Math.floor(Math.random()*50)+1;
-    const giftMessages = ["You deserve all the happiness! 💝", "Thank you for being amazing! 🌟", "You make my life better! 💖", "Cheers to another year! 🎉", "You're one of a kind! ✨"];
-    let giftOpened = false;
-    function checkNumber() {
-      const num = parseInt(document.getElementById('numberInput').value);
-      const fb = document.getElementById('numberFeedback');
-      if(num === secretNumber) fb.innerHTML = '🎉 You got it! Number was ' + secretNumber + '!';
-      else if(num < secretNumber) fb.innerHTML = '📈 Too low!';
-      else fb.innerHTML = '📉 Too high!';
-      document.getElementById('numberInput').value = '';
-    }
-    document.getElementById('giftBox').onclick = function() {
-      if(!giftOpened) {
-        this.textContent = '✨';
-        document.getElementById('giftFeedback').textContent = giftMessages[Math.floor(Math.random()*giftMessages.length)];
-        giftOpened = true;
-        setTimeout(() => { this.textContent = '🎁'; giftOpened = false; }, 3000);
-      }
-    };
-    function playRPS(user) {
-      const choices = ['rock','paper','scissors'];
-      const comp = choices[Math.floor(Math.random()*3)];
-      const emojis = {rock:'🪨',paper:'📄',scissors:'✂️'};
-      let result = '';
-      if(user === comp) result = 'Tie! 🤝';
-      else if((user==='rock'&&comp==='scissors')||(user==='paper'&&comp==='rock')||(user==='scissors'&&comp==='paper'))
-        result = 'You won! 🎉';
-      else result = 'I won! 😄';
-      document.getElementById('rpsFeedback').innerHTML = result + ' I chose ' + emojis[comp];
-    }
-    const quizzes = [{q:'What color is the sky?',a:'blue'},{q:'Whats 2+2?',a:'4'},{q:'Is cake yummy?',a:'yes'},{q:'Do you love birthdays?',a:'yes'}];
-    let curQuiz = 0;
-    function loadQuiz() {
-      const q = quizzes[curQuiz];
-      document.getElementById('quizQuestion').textContent = q.q;
-      document.getElementById('quizOptions').innerHTML = '<input type="text" id="quizInput" class="input-field" placeholder="Your answer"><button class="game-btn" onclick="checkQuiz()">Submit</button>';
-    }
-    function checkQuiz() {
-      const ans = document.getElementById('quizInput').value.toLowerCase();
-      const fb = document.getElementById('quizFeedback');
-      if(ans === quizzes[curQuiz].a) {
-        fb.innerHTML = '✅ Correct!';
-        curQuiz = (curQuiz+1) % quizzes.length;
-        setTimeout(() => { loadQuiz(); fb.innerHTML = ''; }, 1500);
-      } else fb.innerHTML = '❌ Try again!';
-    }
-    function checkPassword() {
-      const pass = document.getElementById('passwordInput').value;
-      const fb = document.getElementById('passwordFeedback');
-      if(pass === 'khushi@2026') fb.innerHTML = '🎉 Password correct! Welcome!';
-      else if(pass.includes('khushi')) fb.innerHTML = '🔑 Close! First part right!';
-      else fb.innerHTML = '❌ Try thinking of something special...';
-      document.getElementById('passwordInput').value = '';
-    }
-    loadQuiz();
-    const heartsContainer = document.getElementById('hearts-container');
-    const heartChars = ['❤','♡','♥'];
-    function createHeart() {
-      const h = document.createElement('div');
-      h.classList.add('heart');
-      h.textContent = heartChars[Math.floor(Math.random()*3)];
-      const left = Math.random()*100;
-      const dur = 8+Math.random()*6;
-      const del = Math.random()*5;
-      h.style.left = left + 'vw';
-      h.style.animationDuration = dur + 's';
-      h.style.animationDelay = del + 's';
-      heartsContainer.appendChild(h);
-      setTimeout(() => heartsContainer.removeChild(h), (dur+del)*1000);
-    }
-    setInterval(createHeart, 900);
-    for(let i = 0; i < 10; i++) setTimeout(createHeart, i*400);
-  </script>
+  </div>
+
+  <input id="blowInput" placeholder="type 'blow'">
+  <button onclick="blowCandle()">Blow Candle</button>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">🎁 Surprise Gift</div>
+  <button onclick="openGift()">Open</button>
+  <p id="giftMsg" class="hidden">You are my forever gift 💝</p>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">💬 Compliment Generator</div>
+  <button onclick="giveCompliment()">Generate</button>
+  <p id="compliment"></p>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">🔐 Password Guess</div>
+  <input id="pwd" placeholder="hint: her name 😉">
+  <button onclick="checkPassword()">Try</button>
+  <p id="pwdResult"></p>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">🔢 Number Guess</div>
+  <input id="num" type="number" placeholder="1–5">
+  <button onclick="guessNumber()">Guess</button>
+  <p id="numResult"></p>
+</div>
+
+<hr>
+
+<div class="center">
+  <div class="section-title">✊✋✌ Rock Paper Scissors</div>
+  <button onclick="rps('rock')">✊</button>
+  <button onclick="rps('paper')">✋</button>
+  <button onclick="rps('scissors')">✌</button>
+  <p id="rpsResult"></p>
+</div>
+
+</div>
+
+<script>
+// ❤️ HEARTS
+const hearts=document.querySelector(".hearts");
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤";
+  h.style.left=Math.random()*100+"vw";
+  hearts.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},300);
+
+// ⏳ COUNTDOWN
+const target=new Date("2026-02-10");
+setInterval(()=>{
+  const d=target-new Date();
+  document.getElementById("countdown").innerText=
+    Math.floor(d/86400000)+" days "+
+    Math.floor(d/3600000)%24+" hrs "+
+    Math.floor(d/60000)%60+" mins";
+},1000);
+
+// 🎉 CONFETTI
+function confetti(){
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+
+// 📳 VIBRATION
+function vibrate(){
+  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+}
+
+// 🎂 BLOW
+function blowCandle(){
+  if(blowInput.value.toLowerCase()=="blow"){
+    flame.innerText="✨";
+    confetti(); vibrate();
+  }
+}
+
+// 🎁 GIFT
+function openGift(){
+  giftMsg.classList.remove("hidden");
+  confetti(); vibrate();
+}
+
+// 💬 COMPLIMENT
+const compliments=[
+  "You make my world softer 💗",
+  "You feel like home 🏡",
+  "You are my calm and chaos 🌸",
+  "I choose you, always ❤️"
+];
+function giveCompliment(){
+  compliment.innerText=
+    compliments[Math.floor(Math.random()*compliments.length)];
+}
+
+// 🔐 PASSWORD
+function checkPassword(){
+  pwdResult.innerText=
+    pwd.value.toLowerCase()=="khushi"?"Correct 💖":"Try again 😏";
+}
+
+// 🔢 NUMBER
+const secret=Math.floor(Math.random()*5)+1;
+function guessNumber(){
+  numResult.innerText=
+    Number(num.value)==secret?"You got it! 🎉":"Nope 😜";
+}
+
+// ✊✋✌
+function rps(choice){
+  const arr=["rock","paper","scissors"];
+  const ai=arr[Math.floor(Math.random()*3)];
+  rpsResult.innerText=`You: ${choice} | Me: ${ai}`;
+}
+</script>
+
 </body>
 </html>
